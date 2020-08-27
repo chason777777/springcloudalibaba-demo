@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: user-center
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: properties #dataId的后缀，同时也是配置内容的文件格式，目前只支持 properties
+        prefix: user-center
+  profiles:
+    active: pro

@@ -1,0 +1,16 @@
+server:
+  port: 4546
+
+spring:
+  application:
+    name: device-center
+  cloud:
+    nacos:
+      discovery:
+        server-addr:127.0.0.1:8848
+    sentinel:
+      transport:
+        port: 8722
+        dashboard: localhost:6999
+
+feign.sentinel.enabled: true

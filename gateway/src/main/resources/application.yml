@@ -1,0 +1,40 @@
+server:
+  port: 8899
+
+spring:
+  application:
+    name: gateway
+  profiles:
+    active: route
+feign.sentinel.enabled: true
+
+--- #创建新文件
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr:127.0.0.1:8848
+    gateway:
+      routes:
+        - id: user-center
+          uri: lb://user-center
+          predicates:
+            - Path=/api-user/**
+          filters:
+            - RequestTime=true #自定义局部拦截器
+            - StripPrefix=1 #path以/查分，截取StripPrefix之后的部分，加入/重新组装路径
+#            - name: RequestRateLimiter #限流配置
+#              args:
+#                key-resolver: '#{@hostAddrKeyResolver}'
+#                redis-rate-limiter.replenishRate: 1
+#                redis-rate-limiter.burstCapacity: 1
+    sentinel:
+            transport:
+              port: 8723
+              dashboard: localhost:6999
+  redis:
+    host: localhost
+    port: 6379
+    password: root
+    database: 0
+    profiles: route #文件名称
