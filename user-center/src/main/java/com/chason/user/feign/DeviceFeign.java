@@ -12,6 +12,5 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(value = "device-center")
 public interface DeviceFeign {
     @RequestMapping(value = "/device/list",method = RequestMethod.GET)
-//    @SentinelResource(value = "123", fallbackClass = {DeviceFallbackUtill.class}, fallback = "handleException")
     String list(String userUuid);
 }

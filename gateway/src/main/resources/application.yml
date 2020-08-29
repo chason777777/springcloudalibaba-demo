@@ -38,3 +38,4 @@ spring:
     password: root
     database: 0
     profiles: route #文件名称
+spring.zipkin.base-url: localhost:9411

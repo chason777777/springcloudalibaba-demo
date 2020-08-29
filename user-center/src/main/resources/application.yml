@@ -9,3 +9,4 @@ spring:
         dashboard: localhost:6999
 
 feign.sentinel.enabled: true
+spring.zipkin.base-url: localhost:9411
